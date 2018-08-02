@@ -1,0 +1,30 @@
+{
+  "name": "node-crud",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cloudinary": "^1.11.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.15.5",
+    "express-session": "^1.15.6",
+    "gridfs-stream": "^1.1.1",
+    "logging-middleware": "0.0.15",
+    "mime": "^2.2.0",
+    "mkdirp": "^0.5.1",
+    "mongoose": "^5.0.8",
+    "morgan": "~1.9.0",
+    "multer": "^1.3.0",
+    "nodemailer": "^4.6.7",
+    "password-hash": "^1.2.2",
+    "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}
