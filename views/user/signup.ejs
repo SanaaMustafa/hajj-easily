@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hajj easily</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="/form.css" >
+
+    </head>
+    <style>
+        .job{
+            font-size: 1.3rem;
+            font-weight: 200;
+        }
+        .done{
+            border: 2px solid goldenrod;
+            background-color: gold;
+            opacity:0.8;
+            font-size: 1.5rem;
+        }
+    
+    </style>
+    <body dir="rtl">
+        
+      
+      
+
+<div id="form-main">
+    <div id="form-div">
+        
+      <form class="montform" id="reused_form" method="post" html="{:multipart=>true}" data-remote="true" action="/signup" accept-charset="UTF-8"  >
+        <p class="name">
+            <input name="name" type="text" class="feedback-input" required placeholder="الاسم" id="name" />
+        </p>
+      
+        <p class="phone">
+            <input name="phone" type="text" class="feedback-input"  placeholder="رقم الهاتف" id="phone" />
+        </p>
+        <p class="email">
+          <input name="email" type="email" required  class="feedback-input" id="email" placeholder="البريد الالكتروني" />
+        </p>
+        <p class="password">
+                <input name="password" type="password" required  class="feedback-input" id="password" placeholder="الرقم السري" />
+              </p>
+      
+        
+      
+   <!-- <div>
+       <p> هل لديك جواز سفرك ؟</p>
+        <p class="bank">
+                نعم :<input name="bank" type="radio" value="yes"  id="bank"  />
+              </p>
+              <p class="card">
+                  <p>ارفع صورة الجواز </p>
+                <input type="file" style="display:none;" id="cardb" >
+            </p>
+              <p class="bank">
+            لا :<input name="bank" type="radio" value="No"  id="bank"  />
+                  </p>
+   </div>
+   <script>
+    $("input[name='bank']").change(function(){
+
+if($(this).val() == "yes")
+{
+$("#cardb").show();
+
+
+}else{
+$("#cardb").hide();
+
+}
+});
+</script>
+
+          <div>
+            <p>  هل لديك  تاشيرة ؟</p>
+              <p class="ready">
+                  نعم :<input name="car" type="radio"  value="yes" id="car" />
+                  
+      
+              </p>
+              <p class="card">
+                <input name="card" type="file"  id="card" style="display:none;" />
+            </p>
+              <p class="ready">
+                  لا :<input name="car" type="radio"  value="no" id="car" />
+                  
+      
+              </p>
+          </div>
+          <script>
+            $("input[name='car']").change(function(){
+
+if($(this).val() == "yes")
+{
+    $("#card").show();
+    
+
+}else{
+    $("#card").hide();
+   
+}
+});
+        </script> -->
+          
+              <div class="submit">
+          <button type="submit" class="button-blue">SUBMIT</button>
+          <div class="ease"></div>
+        </div>
+      </form>
+          
+      </div>
+  </div>
+
+</body>
+</html>

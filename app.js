@@ -114,58 +114,6 @@ app.get('/', async function (req, res) {
 
 
 
-app.get('/mail',async(req,res)=>{
-res.render('user/contact' ,{error:''});
-
-});
-app.post('/mail',async(req,res,next)=>{
-  try {
-   
-    console.log(req.body.name);
-    let newmsg= new User.msgs();
-    newmsg.name=req.body.name;
-    newmsg.msg=req.body.msg;
-    newmsg.phone=req.body.phone;
-    newmsg.email=req.body.email;
-    newmsg.forwhat=req.body.forwhat;
-    newmsg.type=req.body.type;
-    newmsg.from=req.body.from;
-    newmsg.to=req.body.to;
-
-    newmsg.save().then(function(){
-      // res.send('success');
-      res.redirect('/mail');
-    });
-
-  } catch (error) {
-    console.log(error);
-  }
-  
-  
-  });
-
-
-
-
-app.get('/register',async function (req, res) {
-  try
-  {
-  
-  
-  res.render('user/register', {});
-
- }
-  catch(err)
-  {
-
-
-    console.log(err);
-    res.render('error',{error:err,message:'هذا الموقع غير متاح حاليا يرجا التأكد من الاتصال بالانترنت'})
-  }
-
-});
-
-
 
 
 
@@ -174,12 +122,45 @@ app.get('/register',async function (req, res) {
 
 /*create new user */
 //New User Here Registeration 
+app.get('/signup',async (req,res,next)=>{
+  try {
+    res.render('user/signup',{});
+    
+  } catch (error) {
+    console.log(error)
+    
+  }
 
-app.post('/register', async (req, res, next) => {
+});
+app.post('/signup', async (req, res, next) => {
   try {
     let newDoc = await User.user.create(req.body);
     req.session.loggedUser = newDoc;
-    res.status(201).redirect('/home');
+
+     let transporter = nodeMailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: {
+          user: 'ameeltogarymails@gmail.com',
+          pass: 'run123mails0nl!n3'
+      }
+  });
+  let mailOptions = {
+      from: '"Hajj Easily" <ameeltogarymails@gmail.com>', // sender address
+      to: req.body.email, // list of receivers
+      subject: 'Welcome Haj '+ req.body.name, // Subject line
+      html: '<b>Hajj Easily the best site to know how to deal with your flight, hotels,transport,and places</b> <p> انت الان مشترك على نظام موقعنا حج بسهولة الان سيأتيك رساله بكود للمعلومات عنك احتفظ به كلى نساعدك عند وصلولك للمملكة السعودية بالاحتياجات اللازمة مثل التنقلات و الاماكن الاتواصل </p>' // html body
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          return console.log(error);
+      }
+      console.log('Message %s sent: %s', info.messageId, info.response);
+          
+      });
+    res.status(201).json({message:'welcome'});
   } catch (err) {
     console.log(err)
     res.render('error',{error:err,message:'خطأ في عمليه التسجيل يرجي اعادة المحاولة'});
@@ -243,12 +224,7 @@ app.use(isLoggedIn);
 
 
 app.get('/home', isLoggedIn, async(req, res) => {
-  var city = await User.city.find();
-  let person = await User.catitem.find({cat:"11"});
-  let product = await User.catitem.find({cat:"12"});
-  let places = await User.catitem.find({cat:"13"});
-  let adv = await User.adv.find();
-  console.log(city[0].id);
+
   res.render('user/home', { title: 'home',error:'', user: req.session.loggedUser ,adv:adv,city:city, per:person , pro:product , pla:places });
 });
 
@@ -304,30 +280,7 @@ app.post('/home',cpUpload,async (req, res) => {
     req.body.user = req.session.loggedUser;
     let newDoc = await User.adv.create(req.body);
     
-    let transporter = nodeMailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: {
-          user: 'ameeltogarymails@gmail.com',
-          pass: 'run123mails0nl!n3'
-      }
-  });
-  let mailOptions = {
-      from: '"Krunal Lathiya" <ameeltogarymails@gmail.com>', // sender address
-      to: 'sanaamostafa59@gmail.com', // list of receivers
-      subject: 'new image added', // Subject line
-      text: req.body.image, // plain text body
-      html: '<b>NodeJS Email Tutorial</b>' // html body
-  };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-          return console.log(error);
-      }
-      console.log('Message %s sent: %s', info.messageId, info.response);
-          
-      });
       
     
     

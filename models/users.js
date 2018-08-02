@@ -6,16 +6,22 @@ var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
 
-  name: { type: String },
+  name: {
+     type: String ,
+     unique: true
+    },
 
   phone: {
     unique: true,
     type: String,
     match:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
 },
-  password: { type: String, required: true },
+noOfHajjaj:{
+  type:Number
+  
+},
 
-  type: {
+type: {
     type: String,
     enum: ["ADMIN", "NORMAL"],
     default: "NORMAL"
@@ -27,28 +33,34 @@ email: {
     unique: true,
     match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
 },
-familyID:{
-  type: String,
+
+password: { 
+    type: String,
+     required: true
+     },
+
+     familyID:{
+        type: String,
 
 
-},
-companyId:{
-   type:String
+     },
+     companyId:{
+         type:String
 
-},
-hotelId:{
-  type:String
+     },
+     hotelId:{
+        type:String
 
-},
-airPortId:{
-  type:String
+    },
+    airPortId:{
+        type:String
 
-},
+    },
 
 
 passportImg: { // url 
-type: String,
-default: "https://icon-icons.com/icons2/582/PNG/512/worker_icon-icons.com_55029.png"
+    type: String,
+    default: "https://icon-icons.com/icons2/582/PNG/512/worker_icon-icons.com_55029.png"
 },
 
 VISA:{
@@ -63,11 +75,6 @@ default: "https://icon-icons.com/icons2/582/PNG/512/worker_icon-icons.com_55029.
 
 
 
-
-
-//end of modules 
-//end of db schemas
-
 /******************************************************************************/
 
 //export modules to bd used 
@@ -75,11 +82,9 @@ default: "https://icon-icons.com/icons2/582/PNG/512/worker_icon-icons.com_55029.
 var user = mongoose.model('user', userSchema);
 
 
-
 module.exports =
   {
-    
-  
+ 
     user: user,
-   
+    
   };
