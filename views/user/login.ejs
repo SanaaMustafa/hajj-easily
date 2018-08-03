@@ -26,7 +26,6 @@
     
     </style>
     <body dir="rtl">
-        <p style="color:aliceblue; margin:15px;">لديك حساب ؟ : <a href='/login' class="btn btn-success" style="color:aliceblue;"> <i class="fas fa-sign-in-alt"></i></a></p>
         
       
       
@@ -34,17 +33,13 @@
 <div id="form-main">
     <div id="form-div">
         
-      <form class="montform" id="reused_form" method="post" html="{:multipart=>true}" data-remote="true" action="/signup" accept-charset="UTF-8"  >
-        <p class="name">
-            <input name="name" type="text" class="feedback-input" required placeholder="الاسم" id="name" />
-        </p>
+      <form class="montform" id="reused_form" method="post" html="{:multipart=>true}" data-remote="true" action="/login" accept-charset="UTF-8"  >
+        
       
         <p class="phone">
             <input name="phone" type="text" class="feedback-input"  placeholder="رقم الهاتف" id="phone" />
         </p>
-        <p class="email">
-          <input name="email" type="email" required  class="feedback-input" id="email" placeholder="البريد الالكتروني" />
-        </p>
+      
         <p class="password">
                 <input name="password" type="password" required  class="feedback-input" id="password" placeholder="الرقم السري" />
               </p>

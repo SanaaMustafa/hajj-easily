@@ -150,7 +150,7 @@ app.post('/signup', async (req, res, next) => {
       from: '"Hajj Easily" <ameeltogarymails@gmail.com>', // sender address
       to: req.body.email, // list of receivers
       subject: 'Welcome Haj '+ req.body.name, // Subject line
-      html: '<b>Hajj Easily the best site to know how to deal with your flight, hotels,transport,and places</b> <p> انت الان مشترك على نظام موقعنا حج بسهولة الان سيأتيك رساله بكود للمعلومات عنك احتفظ به كلى نساعدك عند وصلولك للمملكة السعودية بالاحتياجات اللازمة مثل التنقلات و الاماكن الاتواصل </p>' // html body
+      html: '<b>Hajj Easily the best site to know how to deal with your flight, hotels,transport,and places</b> <p> انت الان مشترك على نظام موقعنا حج بسهولة الان سوف يأتيك رساله بـ كود للمعلومات عنك احتفظ به كى نساعدك عند وصلولك للمملكة السعودية بالاحتياجات اللازمة مثل التنقلات و الاماكن والتواصل </p>' // html body
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -160,7 +160,7 @@ app.post('/signup', async (req, res, next) => {
       console.log('Message %s sent: %s', info.messageId, info.response);
           
       });
-    res.status(201).json({message:'welcome'});
+    res.status(201).redirect('/home');
   } catch (err) {
     console.log(err)
     res.render('error',{error:err,message:'خطأ في عمليه التسجيل يرجي اعادة المحاولة'});
@@ -170,16 +170,11 @@ app.post('/signup', async (req, res, next) => {
 
 //#region login
 app.route('/login').get( async function (req, res) {
-  let cat = await User.cats.find();
-  let person = await User.catitem.find({cat:"11"});
-  let product = await User.catitem.find({cat:"12"});
-  let places = await User.catitem.find({cat:"13"});
-  let catitem = await User.catitem.find();
-  let adv = await User.adv.find();
-  res.render('user/register', { title: 'Login', error: '', user: '', cats:cat , catitem:catitem , adv:adv ,per:person,pro:product,pla:places});
+  
+  res.render('user/login', { });
 }).post(function (req, res) {
   // get from db 
-  User.user.findOne({ username: req.body.usernamel }, function (err, user) {
+  User.user.findOne({ phone: req.body.phone }, function (err, user) {
     if (err) {
       console.log("Not found");
       res.render('error',{error:err,message:'خطأ في عمليه الدخول يرجي اعادة المحاولة'});
@@ -187,32 +182,32 @@ app.route('/login').get( async function (req, res) {
     }
 
     if (user) {
-      if (req.body.passwordl == user.password) {
+      if (req.body.password == user.password) {
       
         console.log("From if password matched");
         req.session.loggedUser = user;
-        if(user.state=="active")
+        if(user.type='NORMAL')
         {
           res.redirect('/home');
         }
-        else if(user.state=="admin")
+        else if(user.type=="ADMIN")
         {
           res.redirect('/admin');
         }
         else{
-          res.redirect('/register');
+          res.redirect('/signup');
         }
         
       }
       else {
         console.log("else 1");
-        res.redirect('/register');
+        res.redirect('/signup');
 
       }
     }
     else {
       console.log("else 2 ");
-      res.render('user/register', { title: 'Login', error: "username error", user: req.body , cats:cat , catitem:catitem , adv:adv ,per:person,pro:product,pla:places });
+      res.render('user/signup', { title: 'Login', error: "username error" });
 
     }
   });
@@ -225,7 +220,7 @@ app.use(isLoggedIn);
 
 app.get('/home', isLoggedIn, async(req, res) => {
 
-  res.render('user/home', { title: 'home',error:'', user: req.session.loggedUser ,adv:adv,city:city, per:person , pro:product , pla:places });
+  res.render('user/home', { user:req.session.loggedUser});
 });
 
 //End of login 
