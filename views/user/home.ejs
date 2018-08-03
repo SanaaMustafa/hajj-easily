@@ -19,11 +19,31 @@
 
 	<!-- CSS Files -->
 	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="/assets/css/material-bootstrap-wizard.css" rel="stylesheet" />
+    <link href="/assets/css/material-bootstrap-wizard.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link href="/assets/css/demo.css" rel="stylesheet" />
 </head>
+<style>
+    #description .aout{
+        margin-left: 55px;
+        
+    }
+    .cart{
+        margin: auto;
+        width: 600px;
+        height: 500px;
+        
+    }
+    .cart img{
+        height: 100%;
+        width: 100%;
+    }
+
+    
+</style>
 
 <body>
 	<div class="image-container set-full-height" style="background-image: url('/images/wow.jpg')">
@@ -66,7 +86,7 @@
 			                            <li><a href="#details" data-toggle="tab" style="font-size:20px;">اوراقك</a></li>
 			                            <li><a href="#captain" data-toggle="tab" style="font-size:20px;">كيفيه السفر</a></li>
                                         <li><a href="#description" data-toggle="tab" style="font-size:20px;">الفنادق</a></li>
-                                        <li><a href="#description" data-toggle="tab" style="font-size:20px;">المواصلات</a></li>
+                                        <li><a href="#trans" data-toggle="tab" style="font-size:20px;">المواصلات</a></li>
 			                        </ul>
 								</div>
 
@@ -133,37 +153,84 @@
 		                                    <div class="col-sm-10 col-sm-offset-1">
 		                                        <div class="col-sm-4">
 		                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="السفر بمفردك يساعدك على التحرك بسهولة">
-		                                                <input type="radio" name="job" value="Design">
+		                                                <input type="radio" name="job" value="alone">
 		                                                <div class="icon">
                                                                 <i class="fas fa-user-alt"></i>
 		                                                </div>
-		                                                <h6>بمفردك</h6>
+		                                                <h4>بمفردك</h4>
 		                                            </div>
 		                                        </div>
 		                                        <div class="col-sm-4">
 		                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="هل ستسافر مع عائلتك لتشاركهم المناسك">
-		                                                <input type="radio" name="job" value="Code">
+		                                                <input type="radio" name="job" value="family">
 		                                                <div class="icon">
-		                                                    <i class="material-icons">home</i>
+                                                                <i class="fas fa-building"></i>
 		                                                </div>
-		                                                <h6>العائلة</h6>
+		                                                <h4>العائلة</h4>
 		                                            </div>
 		                                        </div>
 												<div class="col-sm-4">
 		                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="هل ستسافر مع شركة سياحة ام مع اصدقائك">
 		                                                <input type="radio" name="job" value="Code">
 		                                                <div class="icon">
-		                                                    <i class="material-icons">business</i>
+                                                                <i class="fas fa-home"></i>
 		                                                </div>
-		                                                <h6>شركة سياحة /مجموعة</h6>
+		                                                <h4>شركة سياحة /مجموعة</h4>
 		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                </div>
+                                                </div>
+                                             
+                                            </div>
+                                            
+                                        </div>
+                                        
 		                            </div>
 		                            <div class="tab-pane" id="description">
+                                            <h4 class="info-text">  تستطيع اضافه اسم الفندق او حجز الفندق من على موقع بكوينج </h4>
+                                            <div class="row">
+                                                <div class="col-sm-10 col-sm-offset-1">
+                                                    <div class="col-sm-4 aout">
+                                                        <div class="choice form-group label-floating" data-toggle="wizard-radio" rel="tooltip" title="السفر بمفردك يساعدك على التحرك بسهولة">
+                                                            <input type="radio" name="job" value="alone">
+                                                            <div class="icon">
+                                                                    <i class="fas fa-hotel"></i>
+                                                            </div>
+                                                            <h4 class="control-label">ادخل اسم الفندق</h4>
+                                                            <input name="passNo" type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4 aout">
+                                                        <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="هل ستسافر مع عائلتك لتشاركهم المناسك">
+                                                            <input type="radio" name="job" value="family">
+                                                            <div class="icon">
+                                                                    <i class="fas fa-ticket-alt"></i>
+                                                            </div>
+                                                            <h4>حجز فندق</h4>
+                                                        </div>
+                                                    </div>
+                                                
+                                                 
+                                                </div>
+                                                
+                                            </div>
 		                          
-		                            </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane" id="trans">
+                                            <h4 class="info-text">  شرح مناسك الحج و شركات المواصلات التى تستطيع التعامل معها </h4>
+                                            <div class="row">
+                                                <div class="col-sm-10 col-sm-offset-1">
+                                                    <div class="cart">
+                                                        <img src="/images/car.gif">
+                                                    </div>
+                                              
+                                                
+                                                 
+                                                </div>
+                                                
+                                            </div>
+		                          
+                                    </div>
+
 		                        </div>
 	                        	<div class="wizard-footer">
 	                            	<div class="pull-right">
