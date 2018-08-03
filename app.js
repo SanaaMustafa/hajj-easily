@@ -223,6 +223,10 @@ app.get('/home', isLoggedIn, async(req, res) => {
   res.render('user/home', { user:req.session.loggedUser});
 });
 
+app.get('/done', isLoggedIn, async(req, res) => {
+
+  res.render('user/done', { user:req.session.loggedUser});
+});
 //End of login 
 
 
@@ -286,6 +290,7 @@ app.post('/home',cpUpload,async (req, res) => {
     res.render('error',{error:err,message:'خطأ في عمليه رفع الاعلان يرجي اعادة المحاولة'});
   }
 });
+
 
 //#endregion
 
